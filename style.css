@@ -1,0 +1,135 @@
+html {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: inherit;
+  box-sizing: inherit;
+}
+
+.display-flex {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
+.calc-container {
+  width: 400px;
+  margin: 0 auto;
+  background-color: #333333;
+  border: 2px solid #dddddd;
+}
+
+.calc-terminal,
+.calc-buttons,
+.calc-numbers-control {
+  width: 100%;
+}
+
+.calc-terminal {
+  height: 100px;
+  -webkit-box-pack: end;
+  -ms-flex-pack: end;
+  justify-content: flex-end;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  padding: 8px;
+}
+
+.calc-terminal p {
+  font-size: 18px;
+  line-height: 18px;
+  color: #ffffff;
+  font-family: sans-serif;
+  text-align: right;
+  margin: 0;
+  padding: 0;
+  -webkit-transition: all 300ms ease-in;
+  -o-transition: all 300ms ease-in;
+  transition: all 300ms ease-in;
+  -webkit-transition-delay: 100ms;
+  -o-transition-delay: 100ms;
+  transition-delay: 100ms;
+}
+
+.calc-terminal .calc-terminal-equation {
+  padding-bottom: 4px;
+}
+
+.calc-terminal .calc-terminal-result,
+.calc-terminal .calc-terminal-equation.active {
+  font-size: 40px;
+  line-height: 40px;
+  padding-top: 4px;
+}
+
+button {
+  height: 76px;
+  font-size: 30px;
+  font-family: monospace;
+  outline: none;
+  padding: 0;
+  border: 1px solid #eeeeee;
+  background-color: #ffffff;
+  cursor: pointer;
+}
+
+.calc-terminal-backspace {
+  font-size: 40px;
+}
+
+button:hover {
+  background-color: #dddddd;
+}
+
+.calc-numbers-container {
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: 80%;
+  height: inherit;
+}
+
+.calc-numbers-units {
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: reverse;
+  -ms-flex-direction: row-reverse;
+  flex-direction: row-reverse;
+  width: 100%;
+}
+
+.calc-numbers-units button {
+  -webkit-box-flex: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  width: 86px;
+}
+
+.calc-equations {
+  -webkit-box-pack: stretch;
+  -ms-flex-pack: stretch;
+  justify-content: stretch;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  width: 20%;
+}
+
+.calc-equations button,
+.calc-numbers-control button {
+  width: 100%;
+  background-color: #dddddd;
+}
+
+.calc-numbers-control button:hover,
+.calc-equations button:hover {
+  background-color: #333333;
+  color: #ffffff;
+}
