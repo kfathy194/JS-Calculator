@@ -10,6 +10,8 @@
   let isEquation = false;
   let completeEquation = false;
 
+  const removeActiveClass = () => terminalEquation.classList.remove("active");
+
   const doMath = {
     add: (firstNumb, secondNumb) => firstNumb + secondNumb,
     subtract: (firstNumb, secondNumb) => firstNumb - secondNumb,
@@ -37,6 +39,32 @@
   const calcControl = {
     backspace: (theTarget) => theTarget.slice(0, -1),
     clear: (theTarget) => theTarget.replace(theTarget, ""),
+    operation: (firstEntry, secondEntry) => {
+      firstEntry = firstEntryNumber.slice(1);
+      secondEntry = secondEntryNumber.slice(1);
+      const firstNumb = parseInt(firstEntry);
+      const secondNumb = parseInt(secondEntry);
+      switch (entryEquation) {
+        case "÷":
+          removeActiveClass();
+          terminalResult.innerText = doMath.divide(firstNumb, secondNumb);
+          break;
+        case "×":
+          removeActiveClass();
+          terminalResult.innerText = doMath.multiple(firstNumb, secondNumb);
+          break;
+        case "+":
+          removeActiveClass();
+          terminalResult.innerText = doMath.add(firstNumb, secondNumb);
+          break;
+        case "-":
+          removeActiveClass();
+          terminalResult.innerText = doMath.subtract(firstNumb, secondNumb);
+          break;
+        default:
+          break;
+      }
+    }
   };
 
   calcBtnsContainer.addEventListener('click', (event) => {
@@ -59,31 +87,7 @@
     } else if (terminalEquation.innerText != "" && targetEquations === "calc-equations" || targetCalcControl === "calc-numbers-control") {
       if (targetEquations === "calc-equations") {
         if (targetClassName === "calc-equation-equals" && completeEquation === true) {
-          firstEntryNumber.slice(1);
-          secondEntryNumber.slice(1);
-          const firstNumb = parseInt(firstEntryNumber);
-          const secondNumb = parseInt(secondEntryNumber);
-          const removeActiveClass = () => terminalEquation.classList.remove("active");
-          switch (entryEquation) {
-            case "÷":
-              removeActiveClass();
-              terminalResult.innerText = doMath.divide(firstNumb, secondNumb);
-              break;
-            case "×":
-              removeActiveClass();
-              terminalResult.innerText = doMath.multiple(firstNumb, secondNumb);
-              break;
-            case "+":
-              removeActiveClass();
-              terminalResult.innerText = doMath.add(firstNumb, secondNumb);
-              break;
-            case "-":
-              removeActiveClass();
-              terminalResult.innerText = doMath.subtract(firstNumb, secondNumb);
-              break;
-            default:
-              break;
-          }
+          calcControl.operation(firstEntryNumber, secondEntryNumber);
         } else {
           entryEquation = targetText;
           terminalEquation.innerText += entryEquation;
@@ -92,6 +96,8 @@
       } else if (targetCalcControl === "calc-numbers-control") {
         if (targetClassName === "calc-terminal-clear") {
           terminalEquation.innerText = calcControl.clear(terminalEquation.innerText);
+          terminalResult.innerText = calcControl.clear(terminalResult.innerText);
+          terminalEquation.classList.add("active");
           isEquation = false;
           firstEntryNumber = 0;
           secondEntryNumber = 0;
